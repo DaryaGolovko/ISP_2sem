@@ -11,25 +11,25 @@ namespace lab1
             int[,] arrShow = new int[8, 8];
 
             Console.WriteLine("\nПоле противника ");
-            showArr(arrAuto);
+            ShowArr(arrAuto);
             Console.WriteLine("\nВаше поле");
-            showArr(arrUser);
+            ShowArr(arrUser);
 
-            fillArrAuto(arrAuto);
-            fillArrUser(arrUser);
-            fillArrShow(arrShow);
+            FillArrAuto(arrAuto);
+            FillArrUser(arrUser);
+            FillArrShow(arrShow);
 
             Console.WriteLine("\nВаше поле");
-            showArr(arrUser);
+            ShowArr(arrUser);
             Console.WriteLine("\nПоле противника ");
-            showArr(arrShow);
+            ShowArr(arrShow);
 
-            playGame(arrAuto, arrUser,arrShow);
+            PlayGame(arrAuto, arrUser,arrShow);
 
             Console.ReadKey();
         }
 
-        static void fillArrAuto(int[,] arrAuto)
+        static void FillArrAuto(int[,] arrAuto)
         {
             Random rand = new Random();
             int x1 = rand.Next(0, 2);
@@ -57,7 +57,7 @@ namespace lab1
             arrAuto[x4, y4 + 3] = 1;
         }
 
-        static void fillArrUser(int[,] arrUser)
+        static void FillArrUser(int[,] arrUser)
         {
             Console.WriteLine("Расстановка кораблей (1 клетка). Ввод клетки, с которой начинается корабль. Введите номер строки(от 1 до 8).");
             string Input = Console.ReadLine();
@@ -71,13 +71,13 @@ namespace lab1
             Console.WriteLine("Введите букву(от a до h)");
             Input = Console.ReadLine();
             bool temporary = Char.TryParse(Input, out char translate);
-            int Y1 = changeLetter(translate);
+            int Y1 = ChangeLetter(translate);
             while (Y1 != 1 && Y1 != 2 && Y1 != 3 && Y1 != 4 && Y1 != 5 && Y1 != 6 && Y1 != 7 && Y1 != 8)
             {
                 Console.WriteLine("Введите еще раз");
                 Input = Console.ReadLine();
                 temporary = Char.TryParse(Input, out translate);
-                Y1 = changeLetter(translate);
+                Y1 = ChangeLetter(translate);
             }
 
             Console.WriteLine("Расстановка кораблей (2 клетки). Ввод клетки, с которой начинается корабль. Введите номер строки(от 1 до 8).");
@@ -92,13 +92,13 @@ namespace lab1
             Console.WriteLine("Введите букву(от a до g)");
             Input = Console.ReadLine();
             temporary = Char.TryParse(Input, out translate);
-            int Y2 = changeLetter(translate);
+            int Y2 = ChangeLetter(translate);
             while (Y2 != 1 && Y2 != 2 && Y2 != 3 && Y2 != 4 && Y2 != 5 && Y2 != 6 && Y2 != 7)
             {
                 Console.WriteLine("Введите еще раз");
                 Input = Console.ReadLine();
                 temporary = Char.TryParse(Input, out translate);
-                Y2 = changeLetter(translate);
+                Y2 = ChangeLetter(translate);
             }
 
             Console.WriteLine("Расстановка кораблей (3 клетки). Ввод клетки, с которой начинается корабль. Введите номер строки(от 1 до 8).");
@@ -113,13 +113,13 @@ namespace lab1
             Console.WriteLine("Введите букву(от a до f)");
             Input = Console.ReadLine();
             temporary = Char.TryParse(Input, out translate);
-            int Y3 = changeLetter(translate);
+            int Y3 = ChangeLetter(translate);
             while (Y3 != 1 && Y3 != 2 && Y3 != 3 && Y3 != 4 && Y3 != 5 && Y3 != 6)
             {
                 Console.WriteLine("Введите еще раз");
                 Input = Console.ReadLine();
                 temporary = Char.TryParse(Input, out translate);
-                Y3 = changeLetter(translate);
+                Y3 = ChangeLetter(translate);
             }
 
             Console.WriteLine("Расстановка кораблей (4 клетки). Ввод клетки, с которой начинается корабль. Введите номер строки(от 1 до 8).");
@@ -134,13 +134,13 @@ namespace lab1
             Console.WriteLine("Введите букву(от a до e)");
             Input = Console.ReadLine();
             temporary = Char.TryParse(Input, out translate);
-            int Y4 = changeLetter(translate);
+            int Y4 = ChangeLetter(translate);
             while (Y4 != 1 && Y4 != 2 && Y4 != 3 && Y4 != 4 && Y4 != 5)
             {
                 Console.WriteLine("Введите еще раз");
                 Input = Console.ReadLine();
                 temporary = Char.TryParse(Input, out translate);
-                Y4 = changeLetter(translate);
+                Y4 = ChangeLetter(translate);
             }
 
             arrUser[X1 - 1, Y1 - 1] = 1;
@@ -158,7 +158,7 @@ namespace lab1
             arrUser[X4 - 1, Y4 + 2] = 1;
         }
 
-        static void fillArrShow(int[,] arrShow)
+        static void FillArrShow(int[,] arrShow)
         {
             for (int i = 0; i < 8; i++)
             {
@@ -170,7 +170,7 @@ namespace lab1
             }
         }
 
-        static void showArr(int[,] arr)
+        static void ShowArr(int[,] arr)
         {
             Console.WriteLine("   a b c d e f g h");
             for (int i = 0; i < 8; i++)
@@ -184,7 +184,7 @@ namespace lab1
             }
         }
 
-        static int changeLetter(char letter)
+        static int ChangeLetter(char letter)
         {
             int number = 0;
             switch (letter)
@@ -202,7 +202,7 @@ namespace lab1
             return number;
         }
 
-        static bool checkWin(int[,] arr)
+        static bool CheckWin(int[,] arr)
         {
             bool flag=false;
             for (int i = 0; i < 8; i++)
@@ -219,9 +219,9 @@ namespace lab1
             return flag;
         }
 
-        static void playGame(int[,] arrAuto, int[,] arrUser, int[,] arrShow )
+        static void PlayGame(int[,] arrAuto, int[,] arrUser, int[,] arrShow )
         {
-            while (checkWin(arrAuto) == true && checkWin(arrUser) == true)
+            while (CheckWin(arrAuto) == true && CheckWin(arrUser) == true)
             {
                 int X = 0;
                 int Y = 0;
@@ -237,14 +237,14 @@ namespace lab1
                 Console.WriteLine("Введите букву(от a до h)");
                 Input = Console.ReadLine();
                 bool temporary = Char.TryParse(Input, out char translate);
-                Y = changeLetter(translate) - 1;
+                Y = ChangeLetter(translate) - 1;
 
                 while (Y != 1 && Y != 2 && Y != 3 && Y != 4 && Y != 5 && Y != 6 && Y != 7 && Y != 0)
                 {
                     Console.WriteLine("Введите еще раз");
                     Input = Console.ReadLine();
                     temporary = Char.TryParse(Input, out translate);
-                    Y = changeLetter(translate) - 1;
+                    Y = ChangeLetter(translate) - 1;
                 }
 
                 if(arrAuto[X, Y] == 1)
@@ -257,7 +257,7 @@ namespace lab1
                 }
 
                 Console.WriteLine("\nПоле противника ");
-                showArr(arrShow);
+                ShowArr(arrShow);
 
                 while (arrAuto[X, Y] == 1)
                 {
@@ -275,13 +275,13 @@ namespace lab1
                     Console.WriteLine("Введите букву(от a до h)");
                     Input = Console.ReadLine();
                     temporary = Char.TryParse(Input, out translate);
-                    Y = changeLetter(translate) - 1;
+                    Y = ChangeLetter(translate) - 1;
                     while (Y != 1 && Y != 2 && Y != 3 && Y != 4 && Y != 5 && Y != 6 && Y != 7 && Y != 0)
                     {
                         Console.WriteLine("Введите еще раз");
                         Input = Console.ReadLine();
                         temporary = Char.TryParse(Input, out translate);
-                        Y = changeLetter(translate) - 1;
+                        Y = ChangeLetter(translate) - 1;
                     }
 
                     if (arrAuto[X, Y] == 1)
@@ -294,7 +294,7 @@ namespace lab1
                     }
 
                     Console.WriteLine("\nПоле противника ");
-                    showArr(arrShow);
+                    ShowArr(arrShow);
                 }
 
                 Random rand = new Random();
@@ -306,11 +306,11 @@ namespace lab1
                     arrUser[x, y] = 0;
                     y++;
                 }
-
+                
                 Console.WriteLine("\nПоле противника ");
-                showArr(arrShow);
+                ShowArr(arrShow);
                 Console.WriteLine("\nВаше поле");
-                showArr(arrUser);
+                ShowArr(arrUser);
             }
 
             Console.WriteLine("Игра окончена!");
