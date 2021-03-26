@@ -1,49 +1,47 @@
-﻿using System;
+using System;
 
-namespace Lab
+namespace numbers
 {
     class Program
     {
-        static void Main()
+        static int Main()
         {
-            int number1=CheckInput();
-            int number2=CheckInput();
-            int count = Count(number1, number2);
+            long number1, number2;
+            
+            Console.Write("Введите 1 число: ");
+            string strNum1 = Console.ReadLine();
+            while (!long.TryParse(strNum1, out number1) || (number1 <= 0))
+            {
+                Console.WriteLine("Введите еще раз");
+                strNum1 = Console.ReadLine();
+            }
 
-            Console.WriteLine("Степень двойки:\n"+count);
-            Console.ReadKey();
+            Console.Write("Введите 2 число: ");
+            string strNum2 = Console.ReadLine();
+            while (!long.TryParse(strNum2, out number2) || (number2 <= number1))
+            {
+                Console.WriteLine("Введите еще раз");
+                strNum2 = Console.ReadLine();
+            }
+
+            long countNum1 = CountMultiply(number1 - 1);
+            long countNum2 = CountMultiply(number2);
+
+            Console.WriteLine("Степень двойки: " + (countNum2 - countNum1));
+
+            Console.ReadKey(); 
+            return 0;
         }
-        static int CheckInput()
+
+        static long CountMultiply(long number)
         {
-            string strInput;
-            int number;
-            Console.WriteLine("Введите число:");
-            strInput = Console.ReadLine();
-
-            while (!Int32.TryParse(strInput, out number))
+            long countMultiply = 0;
+            while (number > 0)
             {
-                strInput = Console.ReadLine();
+                number /= 2;
+                countMultiply += number;
             }
-
-            return number;
-        }
-
-        static int Count(int number1, int number2)
-        {
-            long multiplyNumbers = 1;
-            for (long i = number1; i < number2; i++)
-            {
-                multiplyNumbers *= i + 1;
-            }
-
-            int count = 0;
-            while (multiplyNumbers % 2 == 0)
-            {
-                count++;
-                multiplyNumbers /= 2;
-            }
-
-            return count;
+            return countMultiply;
         }
     }
 }
