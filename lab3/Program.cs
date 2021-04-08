@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cars
+namespace lab3
 {
 
     class Human
