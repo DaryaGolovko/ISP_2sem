@@ -96,6 +96,8 @@ namespace lab5
             return Id;
         }
 
+        abstract public void DoAction();
+
         public void ShowInfo()
         {
             Console.WriteLine($"1.Гендер: {Gender}");
@@ -245,7 +247,7 @@ namespace lab5
             Console.WriteLine("Для увеличения дальности прыжка вам стоит сохранять ИМТ не более 27");
         }
 
-        public void DoAction()
+        override public void DoAction()
         {
             int choice = ChooseAction();
 
@@ -305,7 +307,7 @@ namespace lab5
             Console.WriteLine("Для увеличения дальности прыжка вам стоит сохранять ИМТ не более 30");
         }
 
-        public void DoAction()
+        override public void DoAction()
         {
             int choice = ChooseAction();
 
@@ -368,7 +370,8 @@ namespace lab5
             Console.WriteLine("Для увеличения дальности прыжка вам стоит сохранять ИМТ не более 32");
         }
 
-        public void DoAction()
+        override 
+            public void DoAction()
         {
             int choice = ChooseAction();
 
@@ -466,7 +469,7 @@ namespace lab5
             switch (choice)
             {
                 case 1:
-                    Jumping jumpmen = new Jumping(gender, name, surname, age, height, weight);
+                    Sportsmen jumpmen = new Jumping(gender, name, surname, age, height, weight);
                     jumpmen.ShowInfo();
                     jumpmen.CheckChanges();
                     jumpmen.DoAction();
@@ -488,7 +491,7 @@ namespace lab5
                     }
                     break;
                 case 2:
-                    Swimming swimmen = new Swimming(gender, name, surname, age, height, weight);
+                    Sportsmen swimmen = new Swimming(gender, name, surname, age, height, weight);
                     swimmen.ShowInfo();
                     swimmen.CheckChanges();
                     swimmen.DoAction();
@@ -510,7 +513,7 @@ namespace lab5
                     }
                     break;
                 case 3:
-                    Running runmen = new Running(gender, name, surname, age, height, weight);
+                    Sportsmen runmen = new Running(gender, name, surname, age, height, weight);
                     runmen.ShowInfo();
                     runmen.CheckChanges();
                     runmen.DoAction();
