@@ -9,7 +9,7 @@ namespace lab5
         MassCounter,
         ShowRecords
     }
-    abstract class Sportsmen
+    class Sportsmen
     {
         private string _gender;
         private int _age;
